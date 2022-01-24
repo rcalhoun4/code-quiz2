@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>FF Quiz</title>
         <link rel="stylesheet" href="../code-quiz2/assets/css/styles.css" />
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script src="../code-quiz2/assets/js/script.js" defer></script>
         
     </head>
@@ -17,13 +18,13 @@
                 <div id="question">Question</div>
 
                 <div id="answer-buttons" class="btn-grid">
-                    <button class="btn">Answer 1</button>
+                    <button class="answer-btn btn">Answer 1</button>
 
-                    <button class="btn">Answer 2</button>
+                    <button class="answer-btn btn">Answer 2</button>
 
-                    <button class="btn">Answer 3</button>
+                    <button class="answer-btn btn">Answer 3</button>
 
-                    <button class="btn">Answer 4</button>
+                    <button class="answer-btn btn">Answer 4</button>
                 </div>
             </div>
 
@@ -43,9 +44,26 @@
                 <button id="start-btn" class="start-btn btn">Start Quiz</button>
 
                 <button id="next-btn" class="next-btn btn hide">Next</button>
+
+                <button id="score-btn" class="score-btn btn hide">Score Board</button>
             </div>
 
-            
+            <div id="score-page" class=" score-page hide">
+                <div class="header">
+                    <h2>High Score</h2>
+                </div>
+
+                <div id="score-board" class="score-board">
+                    <ol>
+                        <li></li>
+                    </ol>
+                </div>
+
+                <div id="player-init" class="player-init">
+                    <textarea></textarea>
+                    <button type="submit" id="sub-btn" class="sub-btn btn">Submit</button>
+                </div>
+            </div>
         </div>
     </body>
 </html>

@@ -4,13 +4,18 @@ const questionContainerElement = document.getElementById('question-container');
 const introElement = document.getElementById('intro');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
+const scoreButton = document.getElementById('score-btn');
+
+var score = 0;
+var highscore = localStorage.getItem('highscore');
+
 
 let shuffledQuestions, currentQuestionIndex
 
 startButton.addEventListener('click', startGame);
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
-
+    setNextQuestion();
 })
 
 function startGame() {
@@ -59,21 +64,38 @@ function resetState() {
 }
 
 function selectAnswer(e) {
+    let answerBtn = document.querySelectorAll('.answer-btn');
     const selectedButton = e.target;
     const correct = selectedButton.dataset.correct;
     
-    setStatusClass(document.body, correct)
     setStatusClass(selectedButton, correct);
-    
-    if (shuffledQuestionslength > currentQuestionIndex + 1) {
+
+    if (correct) {
+        score = score + 10;
+        console.log(score);
+
+    } else if (score > 0) {
+        score = score - 5;
+        console.log(score);
+
+    } else if (score <= 0) {
+        score = 0
+        console.log(score);
+    }
+
+    if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide');
+
+    } else {
+        scoreButton.classList.remove('hide');
+        scoreButton.addEventListener('click', scoreBoard);
 
     }
 }
 
 function setStatusClass(element, correct) {
     clearStatusClass(element);
-    
+
     if (correct) {
         element.classList.add('correct');
     
@@ -87,6 +109,10 @@ function clearStatusClass(element) {
     element.classList.remove('wrong');
 }
 
+function scoreBoard() {
+
+}
+
 const questions = [
     {
         question: 'Who is considered the father of the Final Fantasy series?',
@@ -95,6 +121,36 @@ const questions = [
             {text: 'Nobuo Uematsu', correct: false},
             {text: 'Akira Toriyama', correct: false},
             {text: 'Tokugawa Ieyasu', correct: false}
+        ]
+    },
+
+    {
+        question: 'Who is the main character of Final Fantasy IX?',
+        answers: [
+            {text: 'Cloud Strife', correct: false},
+            {text: 'Cecil Harvey', correct: false},
+            {text: 'Zidane Tribal', correct: true},
+            {text: 'Squall Leonhart', correct: false}
+        ]
+    },
+
+    {
+        question: 'What does Sephiroth summon to destory the planet in Final Fantasy VII?',
+        answers: [
+            {text: 'Bahamut', correct: false},
+            {text: 'Meteor', correct: true},
+            {text: 'Chocobo', correct: false},
+            {text: 'Cid', correct: false}
+        ]
+    },
+
+    {
+        question: 'Who was the first party member to die in the Final Fantasy series?',
+        answers: [
+            {text: 'Aerith', correct: false},
+            {text: 'Galuf', correct: false},
+            {text: 'Tellah', correct: false},
+            {text: 'Josef', correct: true}
         ]
     }
 ]

@@ -21,14 +21,6 @@ body {
     background-color: hsl(var(--hue), 100%, 40%);
 }
 
-body.correct {
-    --hue: var(var(--hue-correct));
-}
-
-body.wrong {
-    --hue: var(var(--hue-wrong));
-}
-
 p {
     font-size: larger;
 }
@@ -95,6 +87,10 @@ p {
 
 .btn:hover {
     background-color: violet;
+}
+
+.btn:focus:hover {
+    background-color: hsl(var(--hue), 100%, 40%);
 }
 
 .hide {
